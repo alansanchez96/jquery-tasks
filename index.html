@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery App</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container container-fluid">
+            <a class="navbar-brand" href="#">App Task</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="text" id="searchBtn" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="d-flex align-items-start gap-5">
+
+            <div class="card border-secondary mb-3 col-md-4">
+                <div class="card-header">Crea tu tarea</div>
+                <div class="card-body">
+                    <form id="taskCreate">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre de tarea" id="taskName">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control mt-4" id="taskDescription" placeholder="Descripcion de tarea"
+                                rows="5"></textarea>
+                        </div>
+                        <div class="form-group mx-auto">
+                            <button type="submit" class="btn btn-outline-dark w-100 mt-4">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card border-secondary mb-4" id="cardSearch">
+                    <div class="card-header">Se encontraron los siguientes resultados</div>
+                    <div class="card-body">
+                        <ul class="list-group" id="cardBody"></ul>
+                    </div>
+                </div>
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskList">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
