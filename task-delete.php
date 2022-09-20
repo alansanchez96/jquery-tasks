@@ -10,9 +10,9 @@ if(isset($_POST['id'])){
     $result = mysqli_query($db, $query);
 
     if(!$result){
-        echo 'Mal ahi';
+        echo 'error al eliminar';
     } else {
-        echo 'bien hecho';
+        echo 'eliminado';
     }
 
 }

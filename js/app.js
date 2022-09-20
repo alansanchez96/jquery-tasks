@@ -1,5 +1,7 @@
 $(document).ready(() => {
 
+    let editar = false;
+
     $('#cardSearch').hide();
     mostrarTasks();
 
@@ -9,11 +11,47 @@ $(document).ready(() => {
 
     $('#taskCreate').submit((e) => {
         e.preventDefault();
-        createTask();
+        let url = editar === false ? 'task-create.php' : 'task-update.php';
+        
+        const postData = {
+            'id': $('#taskId').val(),
+            'task': $('#taskName').val(),
+            'descripcion': $('#taskDescription').val()
+        }
+        
+        $.post(url, postData, respuesta => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Tarea guardada con éxito',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            $('#taskCreate').trigger('reset');
+            console.log(respuesta);
+        });
+
         mostrarTasks();
     });
 
+    // Eliminar
     $(document).on('click', '.task-delete', deleteTask);
+    // Postear datos existentes en formulario
+    $(document).on('click', '.task-edit', (e) => {
+
+        editar = true;
+
+        let element = e.target.parentElement.parentElement;
+        let id = $(element).attr('taskId');
+
+        $.post('task-single.php', { id }, (response) => {
+            const task = JSON.parse(response);
+            $('#taskId').val(id);
+            $('#taskName').val(task[0].task);
+            $('#taskDescription').val(task[0].descripcion);
+
+        });
+    });
 
 });
 
@@ -30,7 +68,7 @@ const mostrarTasks = () => {
                 template += `
                 <tr taskId="${task.id}">
                     <td>${task.id}</td>
-                    <td>${task.task}</td>
+                    <td><a href="#" class="task-edit">${task.task}</a></td>
                     <td>${task.descripcion}</td>
                     <td>
                         <button class="task-delete btn btn-danger">Eliminar</button>
@@ -44,7 +82,7 @@ const mostrarTasks = () => {
     });
 }
 
-searchTask = () => {
+const searchTask = () => {
     if ($('#searchBtn').val()) {
         let search = $('#searchBtn').val();
 
@@ -72,27 +110,6 @@ searchTask = () => {
     }
 }
 
-createTask = () => {
-
-    const postData = {
-        'id': $('#id').val(),
-        'task': $('#taskName').val(),
-        'descripcion': $('#taskDescription').val()
-    }
-
-    $.post('task-create.php', postData, respuesta => {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Tarea creada con éxito',
-            showConfirmButton: false,
-            timer: 1500
-        });
-        console.log(respuesta);
-        $('#taskCreate').trigger('reset');
-    });
-
-}
 
 const deleteTask = (e) => {
 
@@ -118,8 +135,5 @@ const deleteTask = (e) => {
                 mostrarTasks();
             });
         }
-    })
-
-
-
+    });
 }

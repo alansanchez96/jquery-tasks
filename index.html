@@ -10,11 +10,11 @@
 
 </head>
 
-<body>
+<body class="bg-light">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container container-fluid">
-            <a class="navbar-brand" href="#">App Task</a>
+            <a class="navbar-brand" href="/">App Task</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
                 aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,26 +29,31 @@
     </nav>
 
     <div class="container my-4">
-        <div class="d-flex align-items-start gap-5">
 
-            <div class="card border-secondary mb-3 col-md-4">
-                <div class="card-header">Crea tu tarea</div>
-                <div class="card-body">
-                    <form id="taskCreate">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nombre de tarea" id="taskName">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control mt-4" id="taskDescription" placeholder="Descripcion de tarea"
-                                rows="5"></textarea>
-                        </div>
-                        <div class="form-group mx-auto">
-                            <button type="submit" class="btn btn-outline-dark w-100 mt-4">Crear</button>
-                        </div>
-                    </form>
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+
+                <div class="card border-secondary mb-3">
+                    <div class="card-header text-light bg-primary">Crea tu tarea</div>
+                    <div class="card-body bg-light">
+                        <form id="taskCreate">
+                            <div class="form-group">
+                                <input type="hidden" id="taskId" disabled>
+                                <input type="text" class="form-control bg-light" placeholder="Nombre de tarea" id="taskName">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control bg-light mt-4" id="taskDescription"
+                                    placeholder="Descripcion de tarea" rows="5"></textarea>
+                            </div>
+                            <div class="form-group mx-auto">
+                                <button type="submit" class="btn btn-outline-dark w-100 mt-4">Guardar Tarea</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-7">
+
+            <div class="col-md-7 mx-auto">
                 <div class="card border-secondary mb-4" id="cardSearch">
                     <div class="card-header">Se encontraron los siguientes resultados</div>
                     <div class="card-body">
@@ -64,16 +69,17 @@
                         </tr>
                     </thead>
                     <tbody id="taskList">
-
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
 
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/app.js"></script>
 </body>
