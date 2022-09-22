@@ -11,7 +11,7 @@ if(isset($id)){
     $result = mysqli_query($db, $query);
 
     if(!$result){
-        echo 'Todo mal';
+        echo 'Error Conexion';
     } else{
         
         $json = [];
@@ -25,8 +25,6 @@ if(isset($id)){
         }
 
         $jsonString = json_encode($json);
-
-        echo $jsonString;
     }
 
 }

@@ -12,7 +12,7 @@ if(isset($_POST['id'])){
     if(!$result){
         echo 'error al eliminar';
     } else {
-        echo 'eliminado';
+        echo 'Tarea Eliminada';
     }
 
 }

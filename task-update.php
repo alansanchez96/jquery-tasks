@@ -12,7 +12,7 @@ if(isset($id)){
     $result = mysqli_query($db, $query);
 
     if($result){
-        echo 'todo ok';
+        echo 'Tarea Actualizada';
     } else{
         echo 'No se pudo actualizar';
     }

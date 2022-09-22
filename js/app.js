@@ -5,6 +5,10 @@ $(document).ready(() => {
     $('#cardSearch').hide();
     mostrarTasks();
 
+    $('#submitSearch').click( e =>{
+        e.preventDefault();
+    });
+
     $('#searchBtn').keyup(() => {
         searchTask();
     });
@@ -12,23 +16,28 @@ $(document).ready(() => {
     $('#taskCreate').submit((e) => {
         e.preventDefault();
         let url = editar === false ? 'task-create.php' : 'task-update.php';
-        
+
         const postData = {
             'id': $('#taskId').val(),
             'task': $('#taskName').val(),
             'descripcion': $('#taskDescription').val()
         }
-        
-        $.post(url, postData, respuesta => {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Tarea guardada con éxito',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            $('#taskCreate').trigger('reset');
-            console.log(respuesta);
+
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: postData,
+            success: response => {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Tarea guardada con éxito',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                $('#taskCreate').trigger('reset');
+                console.log(response);
+            }
         });
 
         mostrarTasks();
@@ -44,12 +53,16 @@ $(document).ready(() => {
         let element = e.target.parentElement.parentElement;
         let id = $(element).attr('taskId');
 
-        $.post('task-single.php', { id }, (response) => {
-            const task = JSON.parse(response);
-            $('#taskId').val(id);
-            $('#taskName').val(task[0].task);
-            $('#taskDescription').val(task[0].descripcion);
-
+        $.ajax({
+            url: 'task-single.php',
+            type: 'post',
+            data: { id },
+            success: (response) => {
+                const task = JSON.parse(response);
+                $('#taskId').val(id);
+                $('#taskName').val(task[0].task);
+                $('#taskDescription').val(task[0].descripcion);
+            }
         });
     });
 
